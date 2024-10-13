@@ -61,6 +61,8 @@ Future<void> _initHive() async {
   await Hive.openBox("mangaCache");
   await Hive.openBox("searchHistory");
   await Hive.box("mangaCache").clear();
+  final history = HistoryRepository();
+  GetIt.I.registerSingleton<HistoryRepository>(history);
   GetIt.I<Talker>().info("Initialize Hive DataBase");
 }
 

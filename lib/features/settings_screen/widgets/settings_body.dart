@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:manga_notes/cubit/theme/theme_cubit.dart';
 import 'package:manga_notes/features/features.dart';
+import 'package:manga_notes/generated/assets.dart';
 import 'package:manga_notes/repositories/repositories.dart';
 import 'package:manga_notes/router/router.dart';
 import 'package:manga_notes/ui/const.dart';
@@ -49,7 +50,7 @@ class SettingsBody extends StatelessWidget {
                     children: [
                       _UrlOutlinedButton(
                         icon: SvgPicture.asset(
-                          "assets/icons/github.svg",
+                          Assets.iconsGithub,
                           colorFilter: ColorFilter.mode(
                             theme.primaryColor,
                             BlendMode.srcIn,
@@ -60,7 +61,7 @@ class SettingsBody extends StatelessWidget {
                       const SizedBox(width: 10),
                       _UrlOutlinedButton(
                         icon: SvgPicture.asset(
-                          "assets/icons/telegram.svg",
+                          Assets.iconsTelegram,
                           colorFilter: ColorFilter.mode(
                             theme.primaryColor,
                             BlendMode.srcIn,
@@ -80,7 +81,7 @@ class SettingsBody extends StatelessWidget {
                     ),
                   ),
                   ImagedNotify(
-                    imagePath: "assets/images/sign_up.png",
+                    imagePath: Assets.imagesSignUp,
                     title: "Тут могла бы быть ваша реклама",
                     subTitle: "Но пока тут я :З",
                   ),
@@ -125,8 +126,7 @@ class _UrlOutlinedButton extends StatelessWidget {
   Future<void> _openUrl() async {
     final uri = Uri.parse(url ?? "");
     if (await canLaunchUrl(uri)) {
-      // TODO: launch url in system browser
-      await launchUrl(uri);
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
   }
 }

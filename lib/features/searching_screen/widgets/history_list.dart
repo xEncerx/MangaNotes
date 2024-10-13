@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_notes/features/features.dart';
+import 'package:manga_notes/generated/assets.dart';
 
 class HistoryList extends StatelessWidget {
   final TextEditingController controller;
   final List<dynamic> historyList;
+  final FocusNode focusNode;
+
   const HistoryList({
     super.key,
     required this.historyList,
     required this.controller,
+    required this.focusNode,
   });
 
   @override
@@ -25,6 +29,7 @@ class HistoryList extends StatelessWidget {
                 itemBuilder: (context, index) => HistoryCard(
                   text: historyList[index],
                   controller: controller,
+                  focusNode: focusNode,
                 ),
               ),
             ),
@@ -33,7 +38,7 @@ class HistoryList extends StatelessWidget {
       );
     } else {
       return ImagedNotify(
-        imagePath: "assets/images/empty.png",
+        imagePath: Assets.imagesEmpty,
         title: "История пуста!",
         subTitle: "Начинай искать мангу и здесь что-то появится",
       );
@@ -43,8 +48,14 @@ class HistoryList extends StatelessWidget {
 
 class HistoryCard extends StatelessWidget {
   final TextEditingController controller;
+  final FocusNode focusNode;
   final String text;
-  const HistoryCard({super.key, required this.text, required this.controller});
+  const HistoryCard({
+    super.key,
+    required this.text,
+    required this.controller,
+    required this.focusNode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +80,7 @@ class HistoryCard extends StatelessWidget {
 
   void _search(BuildContext context) {
     controller.text = text;
+    focusNode.unfocus();
     BlocProvider.of<SearchingHistoryBloc>(context).add(
       LoadSearchingMangaListEvent(mangaName: text),
     );

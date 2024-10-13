@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_notes/features/features.dart';
+import 'package:manga_notes/generated/assets.dart';
 
 class LogInView extends StatefulWidget {
   const LogInView({super.key});
@@ -35,7 +36,7 @@ class _LogInViewState extends State<LogInView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/images/welcome.png",
+                  Assets.imagesWelcome,
                   height: 300,
                 ),
                 Text(

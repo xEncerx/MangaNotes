@@ -15,7 +15,7 @@ extension TagRemover on String {
     return replaceAll(htmlTagRegExp, "")
         .replaceAll(specialCharsRegExp, "")
         .replaceAll(remangaHyperLink, "")
-        .replaceAll("\n\n", "")
+        .trim()
         .replaceAll('"', "");
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manga_notes/generated/assets.dart';
 
 import '../bloc/bloc.dart';
 import '../widgets/widgets.dart';
@@ -37,7 +38,7 @@ class _SignUpViewState extends State<SignUpView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/images/sign_up.png",
+                  Assets.imagesSignUp,
                   height: 300,
                 ),
                 Text(

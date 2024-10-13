@@ -26,6 +26,7 @@ class _SectionButtonState extends State<SectionButton> {
 
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
+        visualDensity: VisualDensity.compact,
         padding: EdgeInsets.symmetric(horizontal: 15),
         side: BorderSide(
           color: theme.hintColor.withOpacity(0.5),

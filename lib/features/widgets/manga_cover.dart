@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:manga_notes/generated/assets.dart';
 
 class MangaPreviewCover extends StatelessWidget {
   final String? coverUrl;
@@ -20,7 +21,7 @@ class MangaPreviewCover extends StatelessWidget {
     final theme = Theme.of(context);
     final errorWidget = Container(
       color: Colors.white,
-      child: Image.asset("assets/images/404.png"),
+      child: Image.asset(Assets.images404),
     );
 
     return Hero(

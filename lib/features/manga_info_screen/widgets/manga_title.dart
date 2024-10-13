@@ -91,21 +91,19 @@ class MangaTitle extends StatelessWidget {
 class _CloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: double.infinity,
-        height: 40,
-        child: FilledButton(
-          onPressed: () => _close(context),
-          child: Transform.translate(
-            offset: const Offset(0, -1),
-            child: Text(
-              "Закрыть",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
-            ),
+    return SizedBox(
+      width: double.infinity,
+      height: 40,
+      child: FilledButton(
+        style: FilledButton.styleFrom(
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
+        onPressed: () => _close(context),
+        child: Text(
+          "Закрыть",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
           ),
         ),
       ),

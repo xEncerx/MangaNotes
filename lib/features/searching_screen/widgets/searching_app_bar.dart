@@ -1,13 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:manga_notes/features/features.dart';
 import 'package:manga_notes/repositories/repositories.dart';
 
 class SearchingAppBar extends StatefulWidget implements PreferredSizeWidget {
   final TextEditingController controller;
+  final FocusNode focusNode;
 
-  const SearchingAppBar({super.key, required this.controller});
+  const SearchingAppBar({
+    super.key,
+    required this.controller,
+    required this.focusNode,
+  });
 
   @override
   State<SearchingAppBar> createState() => _SearchingAppBarState();
@@ -17,15 +23,6 @@ class SearchingAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _SearchingAppBarState extends State<SearchingAppBar> {
-  final _focusNode = FocusNode();
-  final _historyRepository = HistoryRepository();
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -36,7 +33,7 @@ class _SearchingAppBarState extends State<SearchingAppBar> {
       title: TextField(
         controller: widget.controller,
         autofocus: true,
-        focusNode: _focusNode,
+        focusNode: widget.focusNode,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(top: 12),
           hintStyle: theme.textTheme.titleSmall,
@@ -71,8 +68,8 @@ class _SearchingAppBarState extends State<SearchingAppBar> {
   Future<void> _search() async {
     final mangaName = widget.controller.text;
     if (mangaName.isEmpty) return;
-    await _historyRepository.addValue(mangaName);
-    _focusNode.unfocus();
+    await GetIt.I<HistoryRepository>().addValue(mangaName);
+    widget.focusNode.unfocus();
     if (mounted) {
       BlocProvider.of<SearchingHistoryBloc>(context).add(
         LoadSearchingHistoryEvent(),

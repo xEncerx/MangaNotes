@@ -84,8 +84,7 @@ class _ReadingMenuState extends State<ReadingMenu> {
   Future<void> _openUrl() async {
     final uri = Uri.parse(mangaUrl);
     if (await canLaunchUrl(uri)) {
-      // TODO: launch url in system browser
-      await launchUrl(uri);
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
   }
 }
@@ -112,7 +111,7 @@ class _ReadingButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 backgroundColor: theme.primaryColor.withOpacity(0.9),
-                overlayColor: Colors.orange,
+                overlayColor: Colors.amber,
               ),
               onPressed: () => openUrl.call(),
               child: Text("Читать", style: theme.textTheme.titleMedium),

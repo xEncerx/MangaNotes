@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_notes/api/api.dart';
 import 'package:manga_notes/features/features.dart';
+import 'package:manga_notes/generated/assets.dart';
 
 void _updateSections(BuildContext context) {
   BlocProvider.of<MangaListBloc>(context).add(LoadMangaListEvent());
@@ -20,7 +21,7 @@ class MangaReadSection extends StatelessWidget {
         }
         if (state is MangaListException) {
           return ImagedNotify(
-            imagePath: "assets/images/question.png",
+            imagePath: Assets.imagesQuestion,
             title: "Упс... Ошибочка",
             subTitle: "Проверьте подключение к интернету",
             actionWidget: OutlinedActionButton(
@@ -49,7 +50,7 @@ class MangaReadingSection extends StatelessWidget {
         }
         if (state is MangaListException) {
           return ImagedNotify(
-            imagePath: "assets/images/question.png",
+            imagePath: Assets.imagesQuestion,
             title: "Упс... Ошибочка",
             subTitle: "Проверьте подключение к интернету",
             actionWidget: OutlinedActionButton(
@@ -78,7 +79,7 @@ class MangaPlannedSection extends StatelessWidget {
         }
         if (state is MangaListException) {
           return ImagedNotify(
-            imagePath: "assets/images/question.png",
+            imagePath: Assets.imagesQuestion,
             title: "Упс... Ошибочка",
             subTitle: "Проверьте подключение к интернету",
             actionWidget: OutlinedActionButton(
@@ -120,7 +121,7 @@ class MangaSectionList extends StatelessWidget {
       );
     } else {
       return ImagedNotify(
-        imagePath: "assets/images/empty.png",
+        imagePath: Assets.imagesEmpty,
         title: "Список манги пустует...",
         subTitle: "Найди мангу в поисковике и добавь к себе в коллекцию!",
       );

@@ -138,9 +138,11 @@ class SectionRadioTile extends StatelessWidget {
       child: Row(
         children: [
           Radio<ClientSection>(
+            visualDensity: VisualDensity.compact,
             value: value,
             groupValue: groupValue,
             onChanged: onChanged,
+            activeColor: theme.primaryColor,
           ),
           const SizedBox(width: 10),
           Flexible(

@@ -12,7 +12,7 @@ part 'state.dart';
 
 class SearchingHistoryBloc
     extends Bloc<SearchingHistoryEvent, SearchingHistoryState> {
-  final historyRepository = HistoryRepository();
+  final history = GetIt.I<HistoryRepository>();
   final mangaApi = MangaApi();
 
   SearchingHistoryBloc() : super(SearchingInitial()) {
@@ -23,7 +23,7 @@ class SearchingHistoryBloc
         }
 
         try {
-          final historyList = await historyRepository.readAll();
+          final historyList = await history.readAll();
           emit(SearchingHistoryLoaded(historyList: historyList));
         } catch (ex, st) {
           emit(SearchingException(exception: ex));
@@ -34,7 +34,7 @@ class SearchingHistoryBloc
     on<ClearHistoryEvent>(
       (event, emit) async {
         try {
-          await historyRepository.clear();
+          await history.clear();
           emit(SearchingHistoryLoaded(historyList: []));
         } catch (ex, st) {
           emit(SearchingException(exception: ex));
@@ -49,11 +49,10 @@ class SearchingHistoryBloc
         }
 
         try {
-          // TODO: Sort by naming
-          final dbMangas = await GetIt.I<DataBase>().selectAllManga();
           List<MangaData> mangaListData = await mangaApi.globalSearch(
             event.mangaName,
           );
+          final dbMangas = await GetIt.I<DataBase>().selectAllManga();
 
           // Копируем существующий данные. Если манга уже есть в БД
           if (dbMangas != null && dbMangas.isNotEmpty) {

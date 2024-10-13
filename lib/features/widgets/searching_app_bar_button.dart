@@ -27,10 +27,7 @@ class SearchingAppBarButton extends StatelessWidget
           ),
           child: ListTile(
             leading: Icon(Icons.search, color: theme.hintColor),
-            title: Transform.translate(
-              offset: Offset(0, -1),
-              child: Text("Поиск манги...", style: theme.textTheme.titleSmall),
-            ),
+            title: Text("Поиск манги...", style: theme.textTheme.titleSmall),
           ),
         ),
       ),

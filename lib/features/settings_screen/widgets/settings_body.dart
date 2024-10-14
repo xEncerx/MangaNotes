@@ -73,11 +73,6 @@ class SettingsBody extends StatelessWidget {
                     icon: Icons.style_outlined,
                     title: "Кнопки в виде карточек",
                   ),
-                  ImagedNotify(
-                    imagePath: Assets.imagesSignUp,
-                    title: "Тут могла бы быть ваша реклама",
-                    subTitle: "Но пока тут я :З",
-                  ),
                   const SizedBox(height: 20),
                   const Spacer(),
                   const _LogOutButton(),

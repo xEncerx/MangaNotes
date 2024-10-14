@@ -51,11 +51,11 @@ class MangaPreviewCardButton extends StatelessWidget {
           ),
           Positioned(
             top: 15,
-            child: InfoBadge(value: mangaData.avgRating),
+            child: _InfoBadge(value: mangaData.avgRating),
           ),
           Positioned(
             top: 35,
-            child: InfoBadge(value: mangaData.chapters),
+            child: _InfoBadge(value: mangaData.chapters),
           )
         ],
       ),
@@ -67,9 +67,9 @@ class MangaPreviewCardButton extends StatelessWidget {
   }
 }
 
-class InfoBadge extends StatelessWidget {
+class _InfoBadge extends StatelessWidget {
   final dynamic value;
-  const InfoBadge({super.key, required this.value});
+  const _InfoBadge({required this.value});
 
   @override
   Widget build(BuildContext context) {

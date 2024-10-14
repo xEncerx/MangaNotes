@@ -52,13 +52,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           tabBar: mangaTabBar,
           barHeight: 50,
         ),
-        body: TabBarView(
-          children: [
-            MangaReadSection(),
-            MangaReadingSection(),
-            MangaPlannedSection(),
-          ],
-        ),
+        body: MangaTabBarView(),
       ),
     );
   }

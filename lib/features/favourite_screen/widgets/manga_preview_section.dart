@@ -9,45 +9,22 @@ void _updateSections(BuildContext context) {
   BlocProvider.of<MangaListBloc>(context).add(LoadMangaListEvent());
 }
 
-class MangaReadSection extends StatelessWidget {
-  const MangaReadSection({super.key});
+class MangaTabBarView extends StatelessWidget {
+  const MangaTabBarView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MangaListBloc, MangaListState>(
       builder: (context, state) {
         if (state is MangaListLoaded) {
-          return MangaSectionList(mangaListData: state.mangaListReadData);
-        }
-        if (state is MangaListException) {
-          return ImagedNotify(
-            imagePath: Assets.imagesQuestion,
-            title: "Упс... Ошибочка",
-            subTitle: "Проверьте подключение к интернету",
-            actionWidget: OutlinedActionButton(
-              label: "Обновить",
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              onTap: () => _updateSections(context),
-            ),
+          return TabBarView(
+            children: [
+              MangaSectionList(mangaListData: state.mangaListReadData),
+              MangaSectionList(mangaListData: state.mangaListReadingData),
+              MangaSectionList(mangaListData: state.mangaListPlannedData),
+            ],
           );
         }
-        return Center(child: CircularProgressIndicator());
-      },
-    );
-  }
-}
-
-class MangaReadingSection extends StatelessWidget {
-  const MangaReadingSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MangaListBloc, MangaListState>(
-      builder: (context, state) {
-        if (state is MangaListLoaded) {
-          return MangaSectionList(mangaListData: state.mangaListReadingData);
-        }
         if (state is MangaListException) {
           return ImagedNotify(
             imagePath: Assets.imagesQuestion,
@@ -55,37 +32,7 @@ class MangaReadingSection extends StatelessWidget {
             subTitle: "Проверьте подключение к интернету",
             actionWidget: OutlinedActionButton(
               label: "Обновить",
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              onTap: () => _updateSections(context),
-            ),
-          );
-        }
-        return Center(child: CircularProgressIndicator());
-      },
-    );
-  }
-}
-
-class MangaPlannedSection extends StatelessWidget {
-  const MangaPlannedSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MangaListBloc, MangaListState>(
-      builder: (context, state) {
-        if (state is MangaListLoaded) {
-          return MangaSectionList(mangaListData: state.mangaListPlannedData);
-        }
-        if (state is MangaListException) {
-          return ImagedNotify(
-            imagePath: Assets.imagesQuestion,
-            title: "Упс... Ошибочка",
-            subTitle: "Проверьте подключение к интернету",
-            actionWidget: OutlinedActionButton(
-              label: "Обновить",
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
               onTap: () => _updateSections(context),
             ),
           );

@@ -29,7 +29,7 @@ class _LogInViewState extends State<LogInView> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
             key: _formKey,
             child: Column(
@@ -93,7 +93,7 @@ class _LogInViewState extends State<LogInView> {
   void _openCreateAccountView(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => SignUpView(),
+        builder: (context) => const SignUpView(),
       ),
     );
   }
@@ -115,7 +115,7 @@ class _LogInButton extends StatelessWidget {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         if (state is AuthLogInLoading) {
-          return SizedBox(
+          return const SizedBox(
             width: 30,
             height: 30,
             child: CircularProgressIndicator(),

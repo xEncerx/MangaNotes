@@ -27,7 +27,7 @@ class _SectionButtonState extends State<SectionButton> {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         visualDensity: VisualDensity.compact,
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         side: BorderSide(
           color: theme.hintColor.withOpacity(0.5),
         ),
@@ -41,7 +41,7 @@ class _SectionButtonState extends State<SectionButton> {
         children: [
           Text(section),
           const SizedBox(width: 5),
-          Icon(Icons.keyboard_arrow_down),
+          const Icon(Icons.keyboard_arrow_down),
         ],
       ),
     );

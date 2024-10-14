@@ -22,7 +22,7 @@ class HistoryList extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
-            HistoryActions(),
+            const HistoryActions(),
             Expanded(
               child: ListView.builder(
                 itemCount: historyList.length,
@@ -37,7 +37,7 @@ class HistoryList extends StatelessWidget {
         ),
       );
     } else {
-      return ImagedNotify(
+      return const ImagedNotify(
         imagePath: Assets.imagesEmpty,
         title: "История пуста!",
         subTitle: "Начинай искать мангу и здесь что-то появится",
@@ -97,7 +97,7 @@ class HistoryActions extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Flexible(
+        const Flexible(
           child: Text(
             "ИСТОРИЯ ПОИСКА:",
             style: TextStyle(

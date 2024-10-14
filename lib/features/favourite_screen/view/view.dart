@@ -15,13 +15,13 @@ final mangaTabBar = TabBar(
   tabAlignment: TabAlignment.center,
   splashBorderRadius: BorderRadius.circular(5),
   tabs: [
-    Tab(
+    const Tab(
       text: MangaNotesConst.readSection,
     ),
-    Tab(
+    const Tab(
       text: MangaNotesConst.readingSection,
     ),
-    Tab(
+    const Tab(
       text: MangaNotesConst.plannedSection,
     ),
   ],
@@ -52,7 +52,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           tabBar: mangaTabBar,
           barHeight: 50,
         ),
-        body: MangaTabBarView(),
+        body: const MangaTabBarView(),
       ),
     );
   }

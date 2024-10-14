@@ -24,7 +24,7 @@ Future<void> showDeleteDialog(
           fontWeight: FontWeight.w500,
         ),
       ),
-      content: Text(
+      content: const Text(
         "Вы действительно хотите удалить эту мангу?",
         overflow: TextOverflow.visible,
       ),

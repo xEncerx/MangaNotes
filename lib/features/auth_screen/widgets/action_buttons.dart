@@ -23,7 +23,7 @@ class AuthFilledActionButton extends StatelessWidget {
         offset: const Offset(0, -1),
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             color: Color(0xFF121212),
             fontSize: 15,
           ),

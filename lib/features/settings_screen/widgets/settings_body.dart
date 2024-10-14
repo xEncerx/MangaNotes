@@ -21,7 +21,7 @@ class SettingsBody extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: IntrinsicHeight(
@@ -45,13 +45,13 @@ class SettingsBody extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Row(
+                  const Row(
                     children: [
                       UrlOutlinedButton(
                         iconAsset: Assets.iconsGithub,
                         url: MangaNotesConst.projectGitHub,
                       ),
-                      const SizedBox(width: 10),
+                      SizedBox(width: 10),
                       UrlOutlinedButton(
                         iconAsset: Assets.iconsTelegram,
                         url: MangaNotesConst.developerTG,
@@ -126,7 +126,7 @@ class _LogOutButton extends StatelessWidget {
     await GetIt.I<DataBase>().logOut();
     if (context.mounted) {
       BlocProvider.of<MangaListBloc>(context).add(ResetMangaListEvent());
-      AutoRouter.of(context).replace(AuthRoute());
+      AutoRouter.of(context).replace(const AuthRoute());
     }
   }
 }

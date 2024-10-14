@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_notes/features/features.dart';
 
 Future<void> showRecoverDialog(BuildContext context) async {
-  return showDialog(context: context, builder: (context) => RecoveryDialog());
+  return showDialog(context: context, builder: (context) => const RecoveryDialog());
 }
 
 class RecoveryDialog extends StatefulWidget {
@@ -96,7 +96,7 @@ class _RecoveryButton extends StatelessWidget {
       builder: (context, state) {
         if (state is CheckRecoveryCodeStateLoading ||
             state is NewPasswordLoading) {
-          return SizedBox(
+          return const SizedBox(
             width: 30,
             height: 30,
             child: CircularProgressIndicator(),
@@ -167,7 +167,7 @@ class _RecoveryTextFields extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("Введите новый пароль"),
+                const Text("Введите новый пароль"),
                 AuthTextField(
                   controller: newPasswordController,
                   labelText: "Новый пароль",
@@ -183,7 +183,7 @@ class _RecoveryTextFields extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("Введите username и код восстановления"),
+              const Text("Введите username и код восстановления"),
               AuthTextField(
                 controller: usernameController,
                 labelText: "Username",

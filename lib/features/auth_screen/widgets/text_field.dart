@@ -24,7 +24,7 @@ class AuthTextField extends StatelessWidget {
       decoration: InputDecoration(
         suffixIcon: suffix,
         labelText: labelText,
-        errorStyle: TextStyle(color: Colors.redAccent),
+        errorStyle: const TextStyle(color: Colors.redAccent),
       ),
       validator: (value) => _valueValidator(value),
     );

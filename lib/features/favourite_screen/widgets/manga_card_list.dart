@@ -12,7 +12,7 @@ class MangaCardList extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: GridView.builder(
         itemCount: mangaListData.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 8.0,
           mainAxisSpacing: 8.0,

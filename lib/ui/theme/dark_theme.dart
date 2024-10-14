@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final darkTheme = ThemeData(
   useMaterial3: true,
-  primaryColor: Color(0xFFF4AA7E),
+  primaryColor: const Color(0xFFF4AA7E),
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xFFF4AA7E),
     surface: const Color(0xFF121212),
@@ -13,11 +13,11 @@ final darkTheme = ThemeData(
   splashFactory: InkRipple.splashFactory,
   hintColor: const Color(0xFF7b7b7b),
   canvasColor: const Color(0xFF252525),
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     titleSmall: TextStyle(
       fontSize: 16,
       overflow: TextOverflow.ellipsis,
-      color: const Color(0xFF7b7b7b),
+      color: Color(0xFF7b7b7b),
     ),
     labelSmall: TextStyle(
       fontSize: 14,

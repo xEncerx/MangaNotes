@@ -49,7 +49,7 @@ class _MangaInfoScreenState extends State<MangaInfoScreen> {
               if (state is MangaInfoInitial) {
                 return TitleInfo(mangaData: widget.mangaData);
               }
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             },

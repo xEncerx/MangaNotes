@@ -18,7 +18,7 @@ class MangaTitle extends StatelessWidget {
         children: [
           Transform.translate(
             offset: const Offset(0, 4),
-            child: Icon(
+            child: const Icon(
               Icons.info_outline,
               size: 20,
               color: Colors.grey,
@@ -99,7 +99,7 @@ class _CloseButton extends StatelessWidget {
           backgroundColor: Theme.of(context).primaryColor,
         ),
         onPressed: () => _close(context),
-        child: Text(
+        child: const Text(
           "Закрыть",
           style: TextStyle(
             fontWeight: FontWeight.w600,

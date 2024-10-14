@@ -11,8 +11,8 @@ import 'package:talker/talker.dart';
 
 class DataBase {
   final getIt = GetIt.I;
-  final _storage = FlutterSecureStorage(
-    aOptions: const AndroidOptions(encryptedSharedPreferences: true),
+  final _storage = const FlutterSecureStorage(
+    aOptions: AndroidOptions(encryptedSharedPreferences: true),
   );
   String? _userId;
 

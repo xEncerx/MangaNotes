@@ -34,7 +34,7 @@ void main() async {
   );
   Bloc.observer = TalkerBlocObserver(
     talker: talker,
-    settings: TalkerBlocLoggerSettings(
+    settings: const TalkerBlocLoggerSettings(
       printEventFullData: false,
       printStateFullData: false,
     ),

@@ -42,7 +42,7 @@ class _AuthScreenState extends State<AuthScreen> {
             }
           }
         },
-        child: LogInView(),
+        child: const LogInView(),
       ),
     );
   }

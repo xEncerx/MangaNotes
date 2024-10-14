@@ -8,7 +8,7 @@ void showInfoSnackBar({
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     duration: duration,
     behavior: SnackBarBehavior.floating,
-    margin: EdgeInsets.symmetric(horizontal: 10).copyWith(bottom: 10),
+    margin: const EdgeInsets.symmetric(horizontal: 10).copyWith(bottom: 10),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
     ),

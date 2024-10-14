@@ -29,9 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
         future: _checkAuthorizationFuture,
         builder: (context, snapshot) {
           if (snapshot.hasData && snapshot.data == false) {
-            return AuthScreen();
+            return const AuthScreen();
           } else if (snapshot.hasData && snapshot.data == true) {
-            return FavouriteScreen();
+            return const FavouriteScreen();
           }
 
           return const Center(child: CircularProgressIndicator());

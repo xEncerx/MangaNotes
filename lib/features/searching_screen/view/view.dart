@@ -42,7 +42,7 @@ class _SearchingScreenState extends State<SearchingScreen> {
       body: BlocBuilder<SearchingHistoryBloc, SearchingHistoryState>(
         builder: (context, state) {
           if (state is SearchingException) {
-            return ImagedNotify(
+            return const ImagedNotify(
               imagePath: Assets.imagesQuestion,
               title: "Упс... Ошибочка",
               subTitle: "Проверьте подключение к интернету",
@@ -57,7 +57,7 @@ class _SearchingScreenState extends State<SearchingScreen> {
           }
           if (state is SearchingMangaListLoaded) {
             if (state.mangaListData.isEmpty) {
-              return ImagedNotify(
+              return const ImagedNotify(
                 imagePath: Assets.imagesQuestion,
                 title: "Хмм, ничего не найдено...",
                 subTitle:

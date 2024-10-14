@@ -31,7 +31,7 @@ class _SignUpViewState extends State<SignUpView> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
             key: _formKey,
             child: Column(
@@ -104,7 +104,7 @@ class _SignUpButton extends StatelessWidget {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         if (state is AuthSignUpLoading) {
-          return SizedBox(
+          return const SizedBox(
             width: 30,
             height: 30,
             child: CircularProgressIndicator(),

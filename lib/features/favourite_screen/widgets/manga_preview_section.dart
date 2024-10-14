@@ -38,7 +38,7 @@ class MangaTabBarView extends StatelessWidget {
             ),
           );
         }
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }
@@ -68,7 +68,7 @@ class MangaSectionList extends StatelessWidget {
         ),
       );
     } else {
-      return ImagedNotify(
+      return const ImagedNotify(
         imagePath: Assets.imagesEmpty,
         title: "Список манги пустует...",
         subTitle: "Найди мангу в поисковике и добавь к себе в коллекцию!",

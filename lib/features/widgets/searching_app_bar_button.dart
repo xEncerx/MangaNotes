@@ -26,6 +26,7 @@ class SearchingAppBarButton extends StatelessWidget
             color: theme.canvasColor,
           ),
           child: ListTile(
+            visualDensity: VisualDensity.compact,
             leading: Icon(Icons.search, color: theme.hintColor),
             title: Text("Поиск манги...", style: theme.textTheme.titleSmall),
           ),

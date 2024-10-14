@@ -39,28 +39,28 @@ class TitleInfo extends StatelessWidget {
           text: "Дата выпуска: ${mangaData.year} г.",
           copyText: mangaData.year?.toString(),
           prefixIcon: Icons.event_note,
-          style: theme.textTheme.labelSmall?.copyWith(fontSize: 14),
+          style: theme.textTheme.labelSmall,
           iconSize: 20,
         ),
         CopiedText(
           text: "Рейтинг: ${mangaData.avgRating}",
           copyText: mangaData.avgRating?.toString(),
           prefixIcon: Icons.star,
-          style: theme.textTheme.labelSmall?.copyWith(fontSize: 14),
+          style: theme.textTheme.labelSmall,
           iconSize: 20,
         ),
         CopiedText(
           text: "Глав: ${mangaData.chapters}",
           copyText: mangaData.chapters?.toString(),
           prefixIcon: Icons.menu_book_rounded,
-          style: theme.textTheme.labelSmall?.copyWith(fontSize: 14),
+          style: theme.textTheme.labelSmall,
           iconSize: 20,
         ),
         CopiedText(
           text: "Статус: ${mangaData.mangaStatus}",
           copyText: mangaData.mangaStatus,
           prefixIcon: Icons.access_time_outlined,
-          style: theme.textTheme.labelSmall?.copyWith(fontSize: 14),
+          style: theme.textTheme.labelSmall,
           iconSize: 20,
         ),
         CopiedText(
@@ -68,7 +68,6 @@ class TitleInfo extends StatelessWidget {
           copyText: mangaData.genres?.join(", "),
           prefixIcon: Icons.tag,
           style: theme.textTheme.labelSmall?.copyWith(
-            fontSize: 14,
             overflow: TextOverflow.visible,
           ),
           iconSize: 20,
@@ -79,7 +78,6 @@ class TitleInfo extends StatelessWidget {
           copyText: mangaData.description,
           prefixIcon: Icons.article_outlined,
           style: theme.textTheme.labelSmall?.copyWith(
-            fontSize: 14,
             overflow: TextOverflow.visible,
           ),
           iconSize: 20,

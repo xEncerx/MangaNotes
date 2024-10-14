@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_notes/api/api.dart';
+import 'package:manga_notes/cubit/cubit.dart';
 import 'package:manga_notes/features/features.dart';
 import 'package:manga_notes/generated/assets.dart';
 
@@ -58,12 +59,12 @@ class MangaSectionList extends StatelessWidget {
             PointerDeviceKind.mouse,
           },
         ),
-        child: ListView.separated(
-          itemCount: mangaListData.length,
-          itemBuilder: (context, index) => MangaPreviewButton(
-            mangaData: mangaListData[index],
-          ),
-          separatorBuilder: (context, _) => const SizedBox(height: 5),
+        child: BlocBuilder<MangaButtonCubit, MangaButtonState>(
+          builder: (context, state) {
+            return state.isCardStyle
+                ? MangaCardList(mangaListData: mangaListData)
+                : MangaList(mangaListData: mangaListData);
+          },
         ),
       );
     } else {

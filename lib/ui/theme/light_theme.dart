@@ -8,6 +8,7 @@ final lightTheme = ThemeData(
     surface: const Color(0xFFfefefe),
     brightness: Brightness.light,
   ),
+  cardColor: Colors.white,
   scaffoldBackgroundColor: const Color(0xFFfefefe),
   splashFactory: InkRipple.splashFactory,
   hintColor: const Color(0xFF959494),
@@ -19,10 +20,8 @@ final lightTheme = ThemeData(
       color: const Color(0xFF7b7b7b),
     ),
     labelSmall: TextStyle(
-      fontSize: 12,
-      fontWeight: FontWeight.w400,
+      fontSize: 14,
       overflow: TextOverflow.ellipsis,
-      color: Colors.black,
     ),
     titleMedium: TextStyle(
       fontSize: 18,

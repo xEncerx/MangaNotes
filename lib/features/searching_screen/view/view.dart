@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manga_notes/cubit/cubit.dart';
 import 'package:manga_notes/features/features.dart';
 import 'package:manga_notes/generated/assets.dart';
 
@@ -64,12 +65,13 @@ class _SearchingScreenState extends State<SearchingScreen> {
               );
             }
 
-            return ListView.separated(
-              itemCount: state.mangaListData.length,
-              itemBuilder: (context, index) => MangaPreviewButton(
-                mangaData: state.mangaListData[index],
-              ),
-              separatorBuilder: (context, _) => const SizedBox(height: 5),
+            final mangaListData = state.mangaListData;
+            return BlocBuilder<MangaButtonCubit, MangaButtonState>(
+              builder: (context, state) {
+                return state.isCardStyle
+                    ? MangaCardList(mangaListData: mangaListData)
+                    : MangaList(mangaListData: mangaListData);
+              },
             );
           }
           return const Center(child: CircularProgressIndicator());

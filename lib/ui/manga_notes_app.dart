@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manga_notes/cubit/theme/theme_cubit.dart';
+import 'package:manga_notes/cubit/cubit.dart';
 import 'package:manga_notes/router/router.dart';
 
 import '../features/features.dart';
@@ -24,6 +24,7 @@ class _MangaNotesAppState extends State<MangaNotesApp> {
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => SearchingHistoryBloc()),
         BlocProvider(create: (context) => ThemeCubit()),
+        BlocProvider(create: (context) => MangaButtonCubit()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {

@@ -6,10 +6,6 @@ import 'package:manga_notes/cubit/cubit.dart';
 import 'package:manga_notes/features/features.dart';
 import 'package:manga_notes/generated/assets.dart';
 
-void _updateSections(BuildContext context) {
-  BlocProvider.of<MangaListBloc>(context).add(LoadMangaListEvent());
-}
-
 class MangaTabBarView extends StatelessWidget {
   const MangaTabBarView({super.key});
 
@@ -41,6 +37,10 @@ class MangaTabBarView extends StatelessWidget {
         return const Center(child: CircularProgressIndicator());
       },
     );
+  }
+
+  void _updateSections(BuildContext context) {
+    BlocProvider.of<MangaListBloc>(context).add(LoadMangaListEvent());
   }
 }
 

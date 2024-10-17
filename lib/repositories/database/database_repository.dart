@@ -34,7 +34,6 @@ class DataBase {
 
     final mangaListData =
         response.map((item) => MangaData.fromDB(item)).toList();
-    mangaListData.sort((a, b) => b.timestamp.compareTo(a.timestamp));
     return mangaListData;
   }
 

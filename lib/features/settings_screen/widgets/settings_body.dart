@@ -73,6 +73,17 @@ class SettingsBody extends StatelessWidget {
                     icon: Icons.style_outlined,
                     title: "Кнопки в виде карточек",
                   ),
+                  ListTile(
+                    onTap: () => showMangaBottomSheet(context),
+                    contentPadding: const EdgeInsets.only(right: 12),
+                    leading: const Icon(Icons.filter_alt),
+                    title: const Text("Фильтр избранного"),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: theme.primaryColor,
+                      size: 32,
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   const Spacer(),
                   const _LogOutButton(),

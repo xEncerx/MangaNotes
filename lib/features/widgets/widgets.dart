@@ -5,6 +5,5 @@ export 'manga_cover.dart';
 export 'manga_preview_button.dart';
 export 'manga_preview_card_button.dart';
 export 'outline_buttons.dart';
-export 'searching_app_bar_button.dart';
 export 'select_section_dialog.dart';
 export 'snack_bar.dart';

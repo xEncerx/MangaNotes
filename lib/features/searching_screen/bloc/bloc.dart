@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -72,20 +70,10 @@ class SearchingHistoryBloc
             }).toList();
           }
 
-          mangaListData.sort((a, b) {
-            // Сравниваем названия манг по схожести с искомым названием
-            final aSimilarity = compareMangaTitles(
-              a.mainName.toLowerCase(),
-              event.mangaName.toLowerCase(),
-            );
-            final bSimilarity = compareMangaTitles(
-              b.mainName.toLowerCase(),
-              event.mangaName.toLowerCase(),
-            );
-
-            // Чем больше совпадение, тем выше манга в списке
-            return bSimilarity.compareTo(aSimilarity);
-          });
+          mangaListData = MangaFilter(mangaListData: mangaListData).filter(
+            method: FilterMethod.byName,
+            arg: event.mangaName,
+          );
 
           emit(SearchingMangaListLoaded(mangaListData: mangaListData));
         } catch (ex, st) {
@@ -95,14 +83,4 @@ class SearchingHistoryBloc
       },
     );
   }
-}
-
-int compareMangaTitles(String mangaName, String searchName) {
-  int minLength = min(mangaName.length, searchName.length);
-  for (int i = 0; i < minLength; i++) {
-    if (mangaName[i] != searchName[i]) {
-      return i; // Количество совпадающих символов
-    }
-  }
-  return minLength; // Если совпадают полностью
 }

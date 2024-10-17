@@ -42,25 +42,15 @@ class MangaTitle extends StatelessWidget {
 
     showModalBottomSheet(
       backgroundColor: theme.scaffoldBackgroundColor,
+      showDragHandle: true,
       context: context,
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Center(
-                child: Container(
-                  width: 35,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: theme.hintColor.withOpacity(0.5),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
               CopiedText(
                 text: "Название",
                 copyText: mainName,

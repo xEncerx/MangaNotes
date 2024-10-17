@@ -12,20 +12,25 @@ part 'event.dart';
 part 'state.dart';
 
 class MangaListBloc extends Bloc<MangaListEvent, MangaListState> {
+  final settings = GetIt.I<SettingsRepository>();
+
   MangaListBloc() : super(MangaListInitial()) {
     on<LoadMangaListEvent>(
       (event, emit) async {
-        if (state is! MangaListLoaded) {
-          emit(MangaListLoading());
-        }
+        if (state is! MangaListLoaded) emit(MangaListLoading());
 
         try {
-          final mangaListData = await GetIt.I<DataBase>().selectAllManga();
+          var mangaListData = await GetIt.I<DataBase>().selectAllManga();
+
+          if (mangaListData != null && mangaListData.isNotEmpty) {
+            mangaListData = MangaFilter(mangaListData: mangaListData)
+                .filter(method: settings.getFilter());
+          }
 
           final readManga = mangaListData
               ?.where((manga) => manga.section == MangaNotesConst.readSection)
               .toList();
-          final readingManga = mangaListData
+          var readingManga = mangaListData
               ?.where(
                   (manga) => manga.section == MangaNotesConst.readingSection)
               .toList();
@@ -47,6 +52,7 @@ class MangaListBloc extends Bloc<MangaListEvent, MangaListState> {
         }
       },
     );
+
     on<ResetMangaListEvent>((event, emit) {
       emit(MangaListInitial());
     });

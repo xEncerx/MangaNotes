@@ -95,9 +95,11 @@ class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
             }
           },
         ),
-        Text(
-          label,
-          style: theme.textTheme.bodyLarge,
+        Flexible(
+          child: Text(
+            label,
+            style: theme.textTheme.bodyLarge,
+          ),
         ),
       ],
     );

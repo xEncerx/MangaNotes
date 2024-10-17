@@ -52,20 +52,14 @@ class MangaSorter {
     if (arg == null || arg.isEmpty) return mangaListData;
     final query = arg.toLowerCase();
 
-    // Отфильтруем список и отсортируем по степени совпадения
-    final filteredList = mangaListData
-        .where((manga) =>
-            similarityRatio(manga.mainName.toLowerCase(), query) > 0.3)
-        .toList();
-
     // Сортируем по убыванию схожести
-    filteredList.sort((a, b) {
+    mangaListData.sort((a, b) {
       final similarityA = similarityRatio(a.mainName.toLowerCase(), query);
       final similarityB = similarityRatio(b.mainName.toLowerCase(), query);
       return similarityB.compareTo(similarityA);
     });
 
-    return filteredList;
+    return mangaListData;
   }
 
   double similarityRatio(String s1, String s2) {

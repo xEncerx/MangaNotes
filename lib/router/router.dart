@@ -12,8 +12,16 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: HomeRoute.page, path: "/"),
         AutoRoute(page: FavouriteRoute.page, path: "/favourite"),
         AutoRoute(page: AuthRoute.page, path: "/auth"),
-        AutoRoute(page: SearchingRoute.page, path: "/search"),
         AutoRoute(page: MangaInfoRoute.page, path: "/manga-info"),
-        AutoRoute(page: SettingsRoute.page, path: "/settings"),
+        CustomRoute(
+          page: SearchingRoute.page,
+          path: "/search",
+          transitionsBuilder: TransitionsBuilders.noTransition,
+        ),
+        CustomRoute(
+          page: SettingsRoute.page,
+          path: "/settings",
+          transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+        ),
       ];
 }

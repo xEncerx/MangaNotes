@@ -17,6 +17,7 @@ class AppRouter extends RootStackRouter {
           page: SearchingRoute.page,
           path: "/search",
           transitionsBuilder: TransitionsBuilders.noTransition,
+          reverseDurationInMilliseconds: 0,
         ),
         CustomRoute(
           page: SettingsRoute.page,

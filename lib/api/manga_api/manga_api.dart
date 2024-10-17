@@ -159,22 +159,18 @@ class MangaApi {
   }
 
   Future<List<MangaData>> globalSearch(String mangaName) async {
-    final remangaList = await searchRemanga(
-          searchValue: mangaName,
-          limit: 15,
-        ) ??
-        [];
-    final shikimoriList = await searchShikimori(
-          searchValue: mangaName,
-          limit: 15,
-        ) ??
-        [];
-    final mangaOVHList = await searchMangaOVH(
-          searchValue: mangaName,
-          limit: 15,
-        ) ??
-        [];
-    final mangaListData = remangaList + shikimoriList + mangaOVHList;
+    final response = await Future.wait(
+      [
+        searchRemanga(searchValue: mangaName, limit: 15),
+        searchShikimori(searchValue: mangaName, limit: 15),
+        searchMangaOVH(searchValue: mangaName, limit: 15),
+      ],
+    );
+    final mangaListData = response
+        .where((response) => response != null)
+        .expand((response) => response!)
+        .toList();
+
     return mangaListData;
   }
 }

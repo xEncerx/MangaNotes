@@ -16,17 +16,17 @@ class SettingsRepository {
     await prefs.setString("buttonStyle", style);
   }
 
-  FilterMethod getFilter() {
-    int? filterIndex = prefs.getInt("filterIndex");
-    if (filterIndex != null &&
-        filterIndex >= 0 &&
-        filterIndex <= FilterMethod.values.length) {
-      return FilterMethod.values[filterIndex];
+  SorterMethod getSorter() {
+    int? sorterIndex = prefs.getInt("sorterIndex");
+    if (sorterIndex != null &&
+        sorterIndex >= 0 &&
+        sorterIndex <= SorterMethod.values.length) {
+      return SorterMethod.values[sorterIndex];
     }
-    return FilterMethod.byTimeDesc;
+    return SorterMethod.byTimeDesc;
   }
 
-  Future<void> setFilter(FilterMethod filterMethod) async {
-    await prefs.setInt("filterIndex", filterMethod.index);
+  Future<void> setSorter(SorterMethod sorterMethod) async {
+    await prefs.setInt("sorterIndex", sorterMethod.index);
   }
 }

@@ -2,46 +2,46 @@ import 'dart:math';
 
 import 'package:manga_notes/api/api.dart';
 
-part 'filter_model.dart';
+part 'sorter_model.dart';
 
-class MangaFilter {
+class MangaSorter {
   final List<MangaData> mangaListData;
-  MangaFilter({required this.mangaListData});
+  MangaSorter({required this.mangaListData});
 
-  List<MangaData> filter({required FilterMethod method, String? arg}) {
+  List<MangaData> sort({required SorterMethod method, String? arg}) {
     switch (method) {
-      case FilterMethod.byName:
+      case SorterMethod.byName:
         return _nameFilter(arg);
-      case FilterMethod.byTimeAsc:
-        return _timeFilter();
-      case FilterMethod.byTimeDesc:
-        return _timeFilter().reversed.toList();
-      case FilterMethod.byChaptersAsc:
-        return _chaptersFilter();
-      case FilterMethod.byChaptersDesc:
-        return _chaptersFilter().reversed.toList();
-      case FilterMethod.byRatingAsc:
-        return _ratingFilter();
-      case FilterMethod.byRatingDesc:
-        return _ratingFilter().reversed.toList();
+      case SorterMethod.byTimeAsc:
+        return _timeSorting();
+      case SorterMethod.byTimeDesc:
+        return _timeSorting().reversed.toList();
+      case SorterMethod.byChaptersAsc:
+        return _chaptersSorting();
+      case SorterMethod.byChaptersDesc:
+        return _chaptersSorting().reversed.toList();
+      case SorterMethod.byRatingAsc:
+        return _ratingSorting();
+      case SorterMethod.byRatingDesc:
+        return _ratingSorting().reversed.toList();
     }
   }
 
-  List<MangaData> _timeFilter() {
+  List<MangaData> _timeSorting() {
     return List.from(mangaListData)
       ..sort(
         (a, b) => a.timestamp.compareTo(b.timestamp),
       );
   }
 
-  List<MangaData> _chaptersFilter() {
+  List<MangaData> _chaptersSorting() {
     return List.from(mangaListData)
       ..sort(
         (a, b) => (a.chapters ?? 0).compareTo(b.chapters ?? 0),
       );
   }
 
-  List<MangaData> _ratingFilter() {
+  List<MangaData> _ratingSorting() {
     return List.from(mangaListData)
       ..sort(
         (a, b) => (a.avgRating ?? 0).compareTo(b.avgRating ?? 0),

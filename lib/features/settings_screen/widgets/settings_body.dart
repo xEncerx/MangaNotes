@@ -77,7 +77,7 @@ class SettingsBody extends StatelessWidget {
                     onTap: () => showMangaBottomSheet(context),
                     contentPadding: const EdgeInsets.only(right: 12),
                     leading: const Icon(Icons.filter_alt),
-                    title: const Text("Фильтр избранного"),
+                    title: const Text("Сортировка избранного"),
                     trailing: Icon(
                       Icons.keyboard_arrow_down,
                       color: theme.primaryColor,

@@ -1,6 +1,6 @@
-part of 'filter_repository.dart';
+part of 'sorter_repository.dart';
 
-enum FilterMethod {
+enum SorterMethod {
   byName, // По названию
   byTimeAsc, // Старые записи -> Новые записи
   byTimeDesc, // Новые записи -> Старые записи
@@ -10,29 +10,29 @@ enum FilterMethod {
   byRatingDesc // Высокий рейтинг -> Низкий рейтинг
 }
 
-final List<Map<String, dynamic>> filterOptions = const [
+final List<Map<String, dynamic>> sorterOptions = const [
   {
     "label": "Старые записи -> Новые записи",
-    "method": FilterMethod.byTimeAsc,
+    "method": SorterMethod.byTimeAsc,
   },
   {
     "label": "Новые записи -> Старые записи",
-    "method": FilterMethod.byTimeDesc,
+    "method": SorterMethod.byTimeDesc,
   },
   {
     "label": "Меньше глав -> Больше глав",
-    "method": FilterMethod.byChaptersAsc,
+    "method": SorterMethod.byChaptersAsc,
   },
   {
     "label": "Больше глав -> Меньше глав",
-    "method": FilterMethod.byChaptersDesc,
+    "method": SorterMethod.byChaptersDesc,
   },
   {
     "label": "Низкий рейтинг -> Высокий рейтинг",
-    "method": FilterMethod.byRatingAsc,
+    "method": SorterMethod.byRatingAsc,
   },
   {
     "label": "Высокий рейтинг -> Низкий рейтинг",
-    "method": FilterMethod.byRatingDesc,
+    "method": SorterMethod.byRatingDesc,
   },
 ];

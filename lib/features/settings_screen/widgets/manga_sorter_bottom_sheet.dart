@@ -23,11 +23,11 @@ class _MangaBottomSheetContent extends StatefulWidget {
 
 class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
   final SettingsRepository _settings = GetIt.I<SettingsRepository>();
-  late FilterMethod _selectedFilterMethod;
+  late SorterMethod _selectedSorterMethod;
 
   @override
   void initState() {
-    _selectedFilterMethod = _settings.getFilter();
+    _selectedSorterMethod = _settings.getSorter();
     super.initState();
   }
 
@@ -41,22 +41,25 @@ class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "Фильтрация:",
+            "Сортировка:",
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w600,
             ),
           ),
-          ...filterOptions.map((option) => _buildFilterOption(
+          const SizedBox(height: 10),
+          ...sorterOptions.map((option) => _buildSorterOption(
                 label: option["label"] as String,
-                filterMethod: option["method"] as FilterMethod,
+                sorterMethod: option["method"] as SorterMethod,
               )),
+          const SizedBox(height: 15),
           SizedBox(
             width: double.infinity,
+            height: 40,
             child: FilledButton(
               style: FilledButton.styleFrom(
                 backgroundColor: theme.primaryColor,
               ),
-              onPressed: _applyFilter,
+              onPressed: _applySorting,
               child: const Text(
                 "Сохранить",
                 style: TextStyle(
@@ -71,34 +74,37 @@ class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
     );
   }
 
-  Widget _buildFilterOption({
+  Widget _buildSorterOption({
     required String label,
-    required FilterMethod filterMethod,
+    required SorterMethod sorterMethod,
   }) {
+    final theme = Theme.of(context);
+
     return Row(
       children: [
-        Radio<FilterMethod>(
+        Radio<SorterMethod>(
           visualDensity: VisualDensity.compact,
-          value: filterMethod,
-          groupValue: _selectedFilterMethod,
-          onChanged: (FilterMethod? value) {
+          value: sorterMethod,
+          groupValue: _selectedSorterMethod,
+          activeColor: theme.primaryColor,
+          onChanged: (SorterMethod? value) {
             if (value != null) {
               setState(() {
-                _selectedFilterMethod = value;
+                _selectedSorterMethod = value;
               });
             }
           },
         ),
         Text(
           label,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: theme.textTheme.bodyLarge,
         ),
       ],
     );
   }
 
-  Future<void> _applyFilter() async {
-    await _settings.setFilter(_selectedFilterMethod);
+  Future<void> _applySorting() async {
+    await _settings.setSorter(_selectedSorterMethod);
     if (mounted) {
       BlocProvider.of<MangaListBloc>(context).add(LoadMangaListEvent());
       Navigator.of(context).pop();

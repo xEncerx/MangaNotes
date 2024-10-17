@@ -70,8 +70,8 @@ class SearchingHistoryBloc
             }).toList();
           }
 
-          mangaListData = MangaFilter(mangaListData: mangaListData).filter(
-            method: FilterMethod.byName,
+          mangaListData = MangaSorter(mangaListData: mangaListData).sort(
+            method: SorterMethod.byName,
             arg: event.mangaName,
           );
 

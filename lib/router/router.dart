@@ -22,7 +22,8 @@ class AppRouter extends RootStackRouter {
         CustomRoute(
           page: SettingsRoute.page,
           path: "/settings",
-          transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+          transitionsBuilder: TransitionsBuilders.noTransition,
+          reverseDurationInMilliseconds: 0,
         ),
       ];
 }

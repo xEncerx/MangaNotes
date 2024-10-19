@@ -23,7 +23,6 @@ class _ReadingMenuState extends State<ReadingMenu> {
   @override
   void initState() {
     mangaUrl = widget.mangaData.clientUrl ?? "???";
-    _controller.text = mangaUrl;
     super.initState();
   }
 
@@ -65,6 +64,7 @@ class _ReadingMenuState extends State<ReadingMenu> {
 
   Future<void> _updateUrl() async {
     if (_controller.text.isNotEmpty) {
+      mangaUrl = _controller.text;
       await GetIt.I<DataBase>().updateMangaData(
         uuid: widget.mangaData.uuid,
         column: "clientUrl",

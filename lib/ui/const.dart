@@ -6,3 +6,10 @@ class MangaNotesConst {
   static const String developerTG = "https://t.me/xEncerx";
   static const String projectGitHub = "https://github.com/xEncerx/MangaNotes";
 }
+
+class SettingKeysConst {
+  static const String themeKey = "theme";
+  static const String buttonStyleKey = "buttonStyle";
+  static const String sortedIndexKey = "sortedIndex";
+  static const String sorterOrderKey = "sorterOrder";
+}

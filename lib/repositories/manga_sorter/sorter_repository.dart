@@ -8,23 +8,40 @@ class MangaSorter {
   final List<MangaData> mangaListData;
   MangaSorter({required this.mangaListData});
 
-  List<MangaData> sort({required SorterMethod method, String? arg}) {
-    switch (method) {
-      case SorterMethod.byName:
-        return _nameFilter(arg);
-      case SorterMethod.byTimeAsc:
-        return _timeSorting();
-      case SorterMethod.byTimeDesc:
-        return _timeSorting().reversed.toList();
-      case SorterMethod.byChaptersAsc:
-        return _chaptersSorting();
-      case SorterMethod.byChaptersDesc:
-        return _chaptersSorting().reversed.toList();
-      case SorterMethod.byRatingAsc:
-        return _ratingSorting();
-      case SorterMethod.byRatingDesc:
-        return _ratingSorting().reversed.toList();
+  List<MangaData> sort({
+    required SorterMethod method,
+    SorterOrder? sorterOrder,
+    String? arg,
+  }) {
+    if (sorterOrder == null && method != SorterMethod.byNameMatching) {
+      throw Exception("Need to pass sorter order");
     }
+
+    switch (method) {
+      case SorterMethod.byNameMatching:
+        return _nameMatchingFilter(arg);
+      case SorterMethod.byName:
+        return sorterOrder == SorterOrder.desc
+            ? _nameSorting()
+            : _nameSorting().reversed.toList();
+      case SorterMethod.byTime:
+        return sorterOrder == SorterOrder.desc
+            ? _timeSorting()
+            : _timeSorting().reversed.toList();
+      case SorterMethod.byChapters:
+        return sorterOrder == SorterOrder.desc
+            ? _chaptersSorting()
+            : _chaptersSorting().reversed.toList();
+      case SorterMethod.byRating:
+        return sorterOrder == SorterOrder.desc
+            ? _ratingSorting()
+            : _ratingSorting().reversed.toList();
+    }
+  }
+
+  List<MangaData> _nameSorting() {
+    return List.from(mangaListData)
+      ..sort((a, b) => a.mainName.compareTo(b.mainName));
   }
 
   List<MangaData> _timeSorting() {
@@ -48,7 +65,7 @@ class MangaSorter {
       );
   }
 
-  List<MangaData> _nameFilter(String? arg) {
+  List<MangaData> _nameMatchingFilter(String? arg) {
     if (arg == null || arg.isEmpty) return mangaListData;
     final query = arg.toLowerCase();
 

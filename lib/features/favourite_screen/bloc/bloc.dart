@@ -23,8 +23,12 @@ class MangaListBloc extends Bloc<MangaListEvent, MangaListState> {
           var mangaListData = await GetIt.I<DataBase>().selectAllManga();
 
           if (mangaListData != null && mangaListData.isNotEmpty) {
-            mangaListData = MangaSorter(mangaListData: mangaListData)
-                .sort(method: settings.getSorter());
+            final sortedData = settings.getSorter();
+
+            mangaListData = MangaSorter(mangaListData: mangaListData).sort(
+              method: sortedData.sorterMethod,
+              sorterOrder: sortedData.sorterOrder,
+            );
           }
 
           final readManga = mangaListData

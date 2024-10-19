@@ -9,6 +9,7 @@ void showMangaBottomSheet(BuildContext context) {
     context: context,
     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     showDragHandle: true,
+    isScrollControlled: true,
     builder: (context) => const _MangaBottomSheetContent(),
   );
 }
@@ -23,11 +24,14 @@ class _MangaBottomSheetContent extends StatefulWidget {
 
 class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
   final SettingsRepository _settings = GetIt.I<SettingsRepository>();
-  late SorterMethod _selectedSorterMethod;
+  late SorterMethod _sorterMethod;
+  late SorterOrder _sorterOrder;
 
   @override
   void initState() {
-    _selectedSorterMethod = _settings.getSorter();
+    final sorterData = _settings.getSorter();
+    _sorterMethod = sorterData.sorterMethod;
+    _sorterOrder = sorterData.sorterOrder;
     super.initState();
   }
 
@@ -37,20 +41,31 @@ class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(bottom: 10),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Сортировка:",
-            style: theme.textTheme.titleLarge?.copyWith(
+            "Сортировка",
+            style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 10),
-          ...sorterOptions.map((option) => _buildSorterOption(
-                label: option["label"] as String,
-                sorterMethod: option["method"] as SorterMethod,
-              )),
+          ...sorterOptions.map(
+            (i) => _buildSorterMethodOption(
+              label: i.label,
+              sorterMethod: i.sorterMethod,
+            ),
+          ),
+          const Divider(),
+          _buildSorterOrderOption(
+            label: "По убыванию",
+            sorterOrder: SorterOrder.asc,
+          ),
+          _buildSorterOrderOption(
+            label: "По возрастанию",
+            sorterOrder: SorterOrder.desc,
+          ),
           const SizedBox(height: 15),
           SizedBox(
             width: double.infinity,
@@ -74,7 +89,33 @@ class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
     );
   }
 
-  Widget _buildSorterOption({
+  Widget _buildSorterOrderOption({
+    required String label,
+    required SorterOrder sorterOrder,
+  }) {
+    final theme = Theme.of(context);
+
+    return Row(
+      children: [
+        Radio<SorterOrder>(
+          visualDensity: VisualDensity.compact,
+          value: sorterOrder,
+          groupValue: _sorterOrder,
+          activeColor: theme.primaryColor,
+          onChanged: (SorterOrder? value) {
+            if (value != null) {
+              setState(() {
+                _sorterOrder = value;
+              });
+            }
+          },
+        ),
+        _buildSorterLabel(label: label),
+      ],
+    );
+  }
+
+  Widget _buildSorterMethodOption({
     required String label,
     required SorterMethod sorterMethod,
   }) {
@@ -85,28 +126,32 @@ class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
         Radio<SorterMethod>(
           visualDensity: VisualDensity.compact,
           value: sorterMethod,
-          groupValue: _selectedSorterMethod,
+          groupValue: _sorterMethod,
           activeColor: theme.primaryColor,
           onChanged: (SorterMethod? value) {
             if (value != null) {
               setState(() {
-                _selectedSorterMethod = value;
+                _sorterMethod = value;
               });
             }
           },
         ),
-        Flexible(
-          child: Text(
-            label,
-            style: theme.textTheme.bodyLarge,
-          ),
-        ),
+        _buildSorterLabel(label: label),
       ],
     );
   }
 
+  Widget _buildSorterLabel({required String label}) {
+    return Flexible(
+      child: Text(
+        label,
+        style: Theme.of(context).textTheme.labelSmall,
+      ),
+    );
+  }
+
   Future<void> _applySorting() async {
-    await _settings.setSorter(_selectedSorterMethod);
+    await _settings.setSorter(_sorterMethod, _sorterOrder);
     if (mounted) {
       BlocProvider.of<MangaListBloc>(context).add(LoadMangaListEvent());
       Navigator.of(context).pop();

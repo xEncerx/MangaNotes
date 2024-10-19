@@ -71,7 +71,7 @@ class SearchingHistoryBloc
           }
 
           mangaListData = MangaSorter(mangaListData: mangaListData).sort(
-            method: SorterMethod.byName,
+            method: SorterMethod.byNameMatching,
             arg: event.mangaName,
           );
 

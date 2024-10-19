@@ -1,4 +1,5 @@
 import 'package:manga_notes/repositories/repositories.dart';
+import 'package:manga_notes/ui/const.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsRepository {
@@ -6,27 +7,32 @@ class SettingsRepository {
 
   SettingsRepository({required this.prefs});
 
-  String getTheme() => prefs.getString("theme") ?? "dark";
+  String getTheme() => prefs.getString(SettingKeysConst.themeKey) ?? "dark";
   Future<void> setTheme(String newTheme) async {
-    await prefs.setString("theme", newTheme);
+    await prefs.setString(SettingKeysConst.themeKey, newTheme);
   }
 
-  String getButtonStyle() => prefs.getString("buttonStyle") ?? "default";
+  String getButtonStyle() =>
+      prefs.getString(SettingKeysConst.buttonStyleKey) ?? "default";
   Future<void> setButtonStyle(String style) async {
-    await prefs.setString("buttonStyle", style);
+    await prefs.setString(SettingKeysConst.buttonStyleKey, style);
   }
 
-  SorterMethod getSorter() {
-    int? sorterIndex = prefs.getInt("sorterIndex");
-    if (sorterIndex != null &&
-        sorterIndex >= 0 &&
-        sorterIndex <= SorterMethod.values.length) {
-      return SorterMethod.values[sorterIndex];
-    }
-    return SorterMethod.byTimeDesc;
+  SorterSettings getSorter() {
+    int? sorterIndex = prefs.getInt(SettingKeysConst.sortedIndexKey);
+    int? sorterOrder = prefs.getInt(SettingKeysConst.sorterOrderKey);
+
+    return SorterSettings(
+      sorterMethod: SorterMethod.values[sorterIndex ?? 2],
+      sorterOrder: SorterOrder.values[sorterOrder ?? 0],
+    );
   }
 
-  Future<void> setSorter(SorterMethod sorterMethod) async {
-    await prefs.setInt("sorterIndex", sorterMethod.index);
+  Future<void> setSorter(
+    SorterMethod sorterMethod,
+    SorterOrder sorterOrder,
+  ) async {
+    await prefs.setInt(SettingKeysConst.sortedIndexKey, sorterMethod.index);
+    await prefs.setInt(SettingKeysConst.sorterOrderKey, sorterOrder.index);
   }
 }

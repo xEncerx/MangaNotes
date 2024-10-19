@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:manga_notes/api/api.dart';
+import 'package:manga_notes/ui/ui.dart';
 
 part 'sorter_model.dart';
 
@@ -24,6 +25,10 @@ class MangaSorter {
         return sorterOrder == SorterOrder.desc
             ? _nameSorting()
             : _nameSorting().reversed.toList();
+      case SorterMethod.byStatus:
+        return sorterOrder == SorterOrder.desc
+            ? _statusSorting()
+            : _statusSorting().reversed.toList();
       case SorterMethod.byTime:
         return sorterOrder == SorterOrder.desc
             ? _timeSorting()
@@ -37,6 +42,17 @@ class MangaSorter {
             ? _ratingSorting()
             : _ratingSorting().reversed.toList();
     }
+  }
+
+  List<MangaData> _statusSorting() {
+    return List.from(mangaListData)
+      ..sort(
+        (a, b) {
+          final status1 = MangaStatusConst.getProperty(a.mangaStatus);
+          final status2 = MangaStatusConst.getProperty(b.mangaStatus);
+          return status2.compareTo(status1);
+        },
+      );
   }
 
   List<MangaData> _nameSorting() {

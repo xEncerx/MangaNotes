@@ -3,6 +3,7 @@ part of 'sorter_repository.dart';
 enum SorterMethod {
   byNameMatching,
   byName,
+  byStatus,
   byTime,
   byChapters,
   byRating,
@@ -30,6 +31,7 @@ class SorterLabels {
 final List<SorterLabels> sorterOptions = [
   SorterLabels(sorterMethod: SorterMethod.byName, label: "По названию (А-Я)"),
   SorterLabels(sorterMethod: SorterMethod.byTime, label: "По дате чтения"),
+  SorterLabels(sorterMethod: SorterMethod.byStatus, label: "По статусу"),
   SorterLabels(sorterMethod: SorterMethod.byChapters, label: "По кол-ву глав"),
   SorterLabels(sorterMethod: SorterMethod.byRating, label: "По рейтингу"),
 ];

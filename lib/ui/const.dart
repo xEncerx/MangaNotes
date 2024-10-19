@@ -30,7 +30,7 @@ class MangaStatusConst {
     "заморожен",
   ];
   static const List<String> otherStatus = [
-    "Нет переводчика",
+    "нет переводчика",
   ];
 
   // Get int value from current manga status

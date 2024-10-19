@@ -76,7 +76,7 @@ class SettingsBody extends StatelessWidget {
                   ListTile(
                     onTap: () => showMangaBottomSheet(context),
                     contentPadding: const EdgeInsets.only(right: 13),
-                    leading: const Icon(Icons.filter_alt),
+                    leading: const Icon(Icons.sort_rounded),
                     title: const Text("Сортировка избранного"),
                     trailing: Icon(
                       Icons.keyboard_arrow_down,

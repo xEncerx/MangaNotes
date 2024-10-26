@@ -43,6 +43,9 @@ class MangaInfoBloc extends Bloc<MangaInfoEvent, MangaInfoState> {
                 searchValue: event.mangaData.slug!,
                 bySlug: true,
               );
+            case _:
+              emit(MangaInfoException());
+              return;
           }
 
           if (newMangaData != null && newMangaData.isNotEmpty) {

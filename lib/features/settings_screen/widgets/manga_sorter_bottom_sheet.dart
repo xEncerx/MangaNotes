@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:manga_notes/features/features.dart';
 import 'package:manga_notes/repositories/repositories.dart';
 
-void showMangaBottomSheet(BuildContext context) {
+void showSorterMethodBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     backgroundColor: Theme.of(context).scaffoldBackgroundColor,

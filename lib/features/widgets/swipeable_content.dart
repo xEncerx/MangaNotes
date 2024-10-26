@@ -25,7 +25,9 @@ class _SwipeableContentState extends State<SwipeableContent> {
   }
 
   void _onPanUpdate(DragUpdateDetails details) {
-    setState(() => _dx += details.delta.dx);
+    if (details.delta.dx > 0) {
+      setState(() => _dx += details.delta.dx);
+    }
   }
 
   void _onPanEnd(DragEndDetails details) {

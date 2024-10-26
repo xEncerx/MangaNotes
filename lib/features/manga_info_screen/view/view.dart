@@ -23,36 +23,47 @@ class _MangaInfoScreenState extends State<MangaInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MangaInfoAppBar(mangaData: widget.mangaData),
-      body: ScrollConfiguration(
-        behavior: ScrollConfiguration.of(context).copyWith(
-          dragDevices: {
-            PointerDeviceKind.touch,
-            PointerDeviceKind.trackpad,
-            PointerDeviceKind.mouse,
-          },
-        ),
-        child: RefreshIndicator(
-          onRefresh: () => _updateMangaData(context),
-          child: BlocBuilder<MangaInfoBloc, MangaInfoState>(
-            bloc: _bloc,
-            builder: (context, state) {
-              if (state is MangaInfoLoaded) {
-                if (state.mangaData.section != MangaNotesConst.notReadSection) {
-                  BlocProvider.of<MangaListBloc>(context).add(
-                    LoadMangaListEvent(),
+    return SwipeableContent(
+      child: Scaffold(
+        appBar: MangaInfoAppBar(mangaData: widget.mangaData),
+        body: ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            dragDevices: {
+              PointerDeviceKind.touch,
+              PointerDeviceKind.trackpad,
+              PointerDeviceKind.mouse,
+            },
+          ),
+          child: RefreshIndicator(
+            onRefresh: () => _updateMangaData(context),
+            child: BlocConsumer<MangaInfoBloc, MangaInfoState>(
+              bloc: _bloc,
+              listener: (context, state) {
+                if (state is MangaInfoException) {
+                  showInfoSnackBar(
+                    context: context,
+                    text: "Не удалось обновить данные о манге",
                   );
                 }
-                return TitleInfo(mangaData: state.mangaData);
-              }
-              if (state is MangaInfoInitial) {
-                return TitleInfo(mangaData: widget.mangaData);
-              }
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
+              },
+              builder: (context, state) {
+                if (state is MangaInfoLoaded) {
+                  if (state.mangaData.section !=
+                      MangaNotesConst.notReadSection) {
+                    BlocProvider.of<MangaListBloc>(context).add(
+                      LoadMangaListEvent(),
+                    );
+                  }
+                  return TitleInfo(mangaData: state.mangaData);
+                }
+                if (state is MangaInfoInitial) {
+                  return TitleInfo(mangaData: widget.mangaData);
+                }
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
           ),
         ),
       ),

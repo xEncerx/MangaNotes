@@ -10,30 +10,32 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        surfaceTintColor: theme.scaffoldBackgroundColor,
-        titleSpacing: 5,
-        title: Stack(
-          children: [
-            IconBoxButton(
-              onTap: () => _close(context),
-              icon: Icons.arrow_back,
-            ),
-            Center(
-              child: Text(
-                "Настройки",
-                style: theme.textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: theme.primaryColor,
+    return SwipeableContent(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          surfaceTintColor: theme.scaffoldBackgroundColor,
+          titleSpacing: 5,
+          title: Stack(
+            children: [
+              IconBoxButton(
+                onTap: () => _close(context),
+                icon: Icons.arrow_back,
+              ),
+              Center(
+                child: Text(
+                  "Настройки",
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: theme.primaryColor,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
+        body: const SettingsBody(),
       ),
-      body: const SettingsBody(),
     );
   }
 

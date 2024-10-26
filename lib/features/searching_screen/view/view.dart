@@ -34,48 +34,50 @@ class _SearchingScreenState extends State<SearchingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: SearchingAppBar(
-        controller: _controller,
-        focusNode: _focusNode,
-      ),
-      body: BlocBuilder<SearchingHistoryBloc, SearchingHistoryState>(
-        builder: (context, state) {
-          if (state is SearchingException) {
-            return const ImagedNotify(
-              imagePath: Assets.imagesQuestion,
-              title: "Упс... Ошибочка",
-              subTitle: "Проверьте подключение к интернету",
-            );
-          }
-          if (state is SearchingHistoryLoaded) {
-            return HistoryList(
-              historyList: state.historyList,
-              controller: _controller,
-              focusNode: _focusNode,
-            );
-          }
-          if (state is SearchingMangaListLoaded) {
-            if (state.mangaListData.isEmpty) {
+    return SwipeableContent(
+      child: Scaffold(
+        appBar: SearchingAppBar(
+          controller: _controller,
+          focusNode: _focusNode,
+        ),
+        body: BlocBuilder<SearchingHistoryBloc, SearchingHistoryState>(
+          builder: (context, state) {
+            if (state is SearchingException) {
               return const ImagedNotify(
                 imagePath: Assets.imagesQuestion,
-                title: "Хмм, ничего не найдено...",
-                subTitle:
-                    "Попробуй написать иначе, чтобы я смогла тебя понять ;)",
+                title: "Упс... Ошибочка",
+                subTitle: "Проверьте подключение к интернету",
               );
             }
+            if (state is SearchingHistoryLoaded) {
+              return HistoryList(
+                historyList: state.historyList,
+                controller: _controller,
+                focusNode: _focusNode,
+              );
+            }
+            if (state is SearchingMangaListLoaded) {
+              if (state.mangaListData.isEmpty) {
+                return const ImagedNotify(
+                  imagePath: Assets.imagesQuestion,
+                  title: "Хмм, ничего не найдено...",
+                  subTitle:
+                      "Попробуй написать иначе, чтобы я смогла тебя понять ;)",
+                );
+              }
 
-            final mangaListData = state.mangaListData;
-            return BlocBuilder<MangaButtonCubit, MangaButtonState>(
-              builder: (context, state) {
-                return state.isCardStyle
-                    ? MangaCardList(mangaListData: mangaListData)
-                    : MangaList(mangaListData: mangaListData);
-              },
-            );
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
+              final mangaListData = state.mangaListData;
+              return BlocBuilder<MangaButtonCubit, MangaButtonState>(
+                builder: (context, state) {
+                  return state.isCardStyle
+                      ? MangaCardList(mangaListData: mangaListData)
+                      : MangaList(mangaListData: mangaListData);
+                },
+              );
+            }
+            return const Center(child: CircularProgressIndicator());
+          },
+        ),
       ),
     );
   }

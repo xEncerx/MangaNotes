@@ -9,21 +9,36 @@ part 'router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: HomeRoute.page, path: "/"),
+        CustomRoute(
+          page: HomeRoute.page,
+          path: "/",
+          fullscreenDialog: false,
+        ),
         AutoRoute(page: FavouriteRoute.page, path: "/favourite"),
         AutoRoute(page: AuthRoute.page, path: "/auth"),
-        AutoRoute(page: MangaInfoRoute.page, path: "/manga-info"),
+        CustomRoute(
+          page: MangaInfoRoute.page,
+          path: "/manga-info",
+          opaque: false,
+          durationInMilliseconds: 250,
+          reverseDurationInMilliseconds: 250,
+          transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+        ),
         CustomRoute(
           page: SearchingRoute.page,
           path: "/search",
-          transitionsBuilder: TransitionsBuilders.noTransition,
-          reverseDurationInMilliseconds: 0,
+          opaque: false,
+          durationInMilliseconds: 0,
+          reverseDurationInMilliseconds: 250,
+          transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         ),
         CustomRoute(
           page: SettingsRoute.page,
           path: "/settings",
-          transitionsBuilder: TransitionsBuilders.noTransition,
-          reverseDurationInMilliseconds: 0,
+          opaque: false,
+          durationInMilliseconds: 0,
+          reverseDurationInMilliseconds: 250,
+          transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         ),
       ];
 }

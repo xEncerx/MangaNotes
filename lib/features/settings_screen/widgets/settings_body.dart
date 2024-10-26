@@ -74,7 +74,7 @@ class SettingsBody extends StatelessWidget {
                     title: "Кнопки в виде карточек",
                   ),
                   ListTile(
-                    onTap: () => showMangaBottomSheet(context),
+                    onTap: () => showSorterMethodBottomSheet(context),
                     contentPadding: const EdgeInsets.only(right: 13),
                     leading: const Icon(Icons.sort_rounded),
                     title: const Text("Сортировка избранного"),

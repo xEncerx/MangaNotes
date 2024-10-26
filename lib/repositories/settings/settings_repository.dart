@@ -23,7 +23,7 @@ class SettingsRepository {
     int? sorterOrder = prefs.getInt(SettingKeysConst.sorterOrderKey);
 
     return SorterSettings(
-      sorterMethod: SorterMethod.values[sorterIndex ?? 2],
+      sorterMethod: SorterMethod.values[sorterIndex ?? 1],
       sorterOrder: SorterOrder.values[sorterOrder ?? 0],
     );
   }

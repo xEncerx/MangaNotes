@@ -24,19 +24,16 @@ class MangaPreviewCover extends StatelessWidget {
       child: Image.asset(Assets.images404),
     );
 
-    return Hero(
-      tag: coverUrl ?? "error_image",
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadius),
-        child: SizedBox(
-          width: width,
-          height: height,
-          child: CachedNetworkImage(
-            imageUrl: coverUrl ?? "",
-            fit: BoxFit.cover,
-            errorWidget: (_, __, ___) => errorWidget,
-            placeholder: (_, __) => ColoredBox(color: theme.hintColor),
-          ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(borderRadius),
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: CachedNetworkImage(
+          imageUrl: coverUrl ?? "",
+          fit: BoxFit.cover,
+          errorWidget: (_, __, ___) => errorWidget,
+          placeholder: (_, __) => ColoredBox(color: theme.hintColor),
         ),
       ),
     );

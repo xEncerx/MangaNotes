@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:manga_notes/generated/assets.dart';
+import 'package:shimmer/shimmer.dart';
 
 class MangaPreviewCover extends StatelessWidget {
   final String? coverUrl;
@@ -33,7 +34,12 @@ class MangaPreviewCover extends StatelessWidget {
           imageUrl: coverUrl ?? "",
           fit: BoxFit.cover,
           errorWidget: (_, __, ___) => errorWidget,
-          placeholder: (_, __) => ColoredBox(color: theme.hintColor),
+          placeholder: (_, __) => Shimmer.fromColors(
+            baseColor: theme.hintColor,
+            highlightColor: theme.hintColor.withOpacity(0.8),
+            period: const Duration(seconds: 1),
+            child: ColoredBox(color: theme.hintColor),
+          ),
         ),
       ),
     );

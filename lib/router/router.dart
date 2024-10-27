@@ -9,12 +9,8 @@ part 'router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        CustomRoute(
-          page: HomeRoute.page,
-          path: "/",
-          fullscreenDialog: false,
-        ),
-        AutoRoute(page: FavouriteRoute.page, path: "/favourite"),
+        CustomRoute(page: HomeRoute.page, path: "/"),
+        CustomRoute(page: FavouriteRoute.page, path: "/favourite"),
         AutoRoute(page: AuthRoute.page, path: "/auth"),
         CustomRoute(
           page: MangaInfoRoute.page,

@@ -1,5 +1,5 @@
 import 'package:manga_notes/api/api.dart';
-import 'package:manga_notes/api/parser/parser.dart';
+import 'package:manga_notes/extension/extension.dart';
 
 MangaData parseFromDB(Map<String, dynamic> json) {
   return MangaData(

@@ -2,7 +2,7 @@ import 'dart:convert' as dc;
 
 import 'package:manga_notes/api/api.dart';
 import 'package:manga_notes/api/models/manga_data.dart';
-import 'package:manga_notes/api/parser/parser.dart';
+import 'package:manga_notes/extension/extension.dart';
 
 MangaData parseFromRemanga(Map<String, dynamic> json) {
   return MangaData(

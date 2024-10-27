@@ -61,8 +61,7 @@ class _SignUpViewState extends State<SignUpView> {
                 AuthTextField(
                   controller: _passwordController,
                   labelText: "Password",
-                  obscureText: true,
-                  usePasswordValidator: true,
+                  isPasswordField: true,
                 ),
                 const SizedBox(height: 20),
                 _SignUpButton(

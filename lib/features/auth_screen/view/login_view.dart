@@ -59,8 +59,7 @@ class _LogInViewState extends State<LogInView> {
                 AuthTextField(
                   controller: _passwordController,
                   labelText: "Password",
-                  obscureText: true,
-                  usePasswordValidator: true,
+                  isPasswordField: true,
                   suffix: IconButton(
                     onPressed: () => _openRecoverPasswordDialog(),
                     icon: Icon(

@@ -9,8 +9,27 @@ class SwipeableContent extends StatefulWidget {
   State<SwipeableContent> createState() => _SwipeableContentState();
 }
 
-class _SwipeableContentState extends State<SwipeableContent> {
+class _SwipeableContentState extends State<SwipeableContent>
+    with SingleTickerProviderStateMixin {
+  late final _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 100),
+  );
+  late Animation _animation;
   double _dx = 0;
+
+  @override
+  void initState() {
+    _animation = Tween<double>(begin: 0, end: 0).animate(_controller)
+      ..addListener(() => setState(() => _dx = _animation.value));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +50,11 @@ class _SwipeableContentState extends State<SwipeableContent> {
   }
 
   void _onPanEnd(DragEndDetails details) {
-    if (_dx > MediaQuery.of(context).size.width * 0.2) {
+    if (_dx > MediaQuery.of(context).size.width * 0.3) {
       context.router.maybePop();
     } else {
-      setState(() => _dx = 0);
+      _animation = Tween<double>(begin: _dx, end: 0).animate(_controller);
+      _controller.forward(from: 0);
     }
   }
 }

@@ -34,6 +34,7 @@ class _SearchingAppBarState extends State<SearchingAppBar> {
         controller: widget.controller,
         autofocus: true,
         focusNode: widget.focusNode,
+        onSubmitted: (_) => _search(),
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(top: 12),
           hintStyle: theme.textTheme.titleSmall,

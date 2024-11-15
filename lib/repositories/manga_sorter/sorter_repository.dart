@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:manga_notes/api/api.dart';
+import 'package:manga_notes/extension/language_detector.dart';
 import 'package:manga_notes/ui/ui.dart';
 
 part 'sorter_model.dart';
@@ -84,11 +85,15 @@ class MangaSorter {
   List<MangaData> _nameMatchingFilter(String? arg) {
     if (arg == null || arg.isEmpty) return mangaListData;
     final query = arg.toLowerCase();
+    final queryLang = query.getLanguage();
 
     // Сортируем по убыванию схожести
     mangaListData.sort((a, b) {
-      final similarityA = similarityRatio(a.mainName.toLowerCase(), query);
-      final similarityB = similarityRatio(b.mainName.toLowerCase(), query);
+      final aName = queryLang == "ru" ? a.mainName : a.otherNames;
+      final bName = queryLang == "ru" ? b.mainName : b.otherNames;
+
+      final similarityA = similarityRatio((aName ?? a.mainName), query);
+      final similarityB = similarityRatio((bName ?? b.mainName), query);
       return similarityB.compareTo(similarityA);
     });
 
@@ -96,6 +101,8 @@ class MangaSorter {
   }
 
   double similarityRatio(String s1, String s2) {
+    s1 = s1.toLowerCase();
+    s2 = s2.toLowerCase();
     final int levenshteinDistance = _levenshtein(s1, s2);
     final int maxLength = max(s1.length, s2.length);
 

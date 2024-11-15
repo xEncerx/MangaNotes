@@ -74,10 +74,10 @@ class SettingsBody extends StatelessWidget {
                     title: "Кнопки в виде карточек",
                   ),
                   ListTile(
-                    onTap: () => showSorterMethodBottomSheet(context),
+                    onTap: () => showMangaUpdaterBottomSheet(context),
                     contentPadding: const EdgeInsets.only(right: 13),
-                    leading: const Icon(Icons.sort_rounded),
-                    title: const Text("Сортировка избранного"),
+                    leading: const Icon(Icons.update),
+                    title: const Text("Обновить всю мангу"),
                     trailing: Icon(
                       Icons.keyboard_arrow_down,
                       color: theme.primaryColor,
@@ -97,8 +97,7 @@ class SettingsBody extends StatelessWidget {
   }
 
   void _changeMangaButtonStyle(BuildContext context, bool value) {
-    BlocProvider.of<MangaButtonCubit>(context)
-        .setButtonStyle(value ? "card" : "default");
+    BlocProvider.of<MangaButtonCubit>(context).setButtonStyle(value ? "card" : "default");
   }
 
   void _changeTheme(BuildContext context, bool value) {

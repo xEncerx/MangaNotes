@@ -30,17 +30,17 @@ class MangaInfoBloc extends Bloc<MangaInfoEvent, MangaInfoState> {
           switch (event.mangaData.service) {
             case "remanga":
               newMangaData = await mangaApi.searchRemanga(
-                searchValue: event.mangaData.slug!,
+                searchValue: event.mangaData.slug,
                 bySlug: true,
               );
             case "shikimori":
               newMangaData = await mangaApi.searchShikimori(
-                searchValue: event.mangaData.slug!,
+                searchValue: event.mangaData.slug,
                 bySlug: true,
               );
             case "mangaOVH":
               newMangaData = await mangaApi.searchMangaOVH(
-                searchValue: event.mangaData.slug!,
+                searchValue: event.mangaData.slug,
                 bySlug: true,
               );
             case _:

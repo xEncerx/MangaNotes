@@ -5,14 +5,14 @@ sealed class SearchingHistoryEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-final class LoadSearchingHistoryEvent extends SearchingHistoryEvent {}
+final class LoadSearchingHistory extends SearchingHistoryEvent {}
 
-final class LoadSearchingMangaListEvent extends SearchingHistoryEvent {
+final class SearchManga extends SearchingHistoryEvent {
   final String mangaName;
 
-  LoadSearchingMangaListEvent({required this.mangaName});
+  SearchManga({required this.mangaName});
   @override
   List<Object?> get props => super.props..add(mangaName);
 }
 
-final class ClearHistoryEvent extends SearchingHistoryEvent {}
+final class ClearSearchingHistory extends SearchingHistoryEvent {}

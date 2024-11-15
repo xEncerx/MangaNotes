@@ -14,7 +14,7 @@ class SearchingHistoryBloc
   final mangaApi = MangaApi();
 
   SearchingHistoryBloc() : super(SearchingInitial()) {
-    on<LoadSearchingHistoryEvent>(
+    on<LoadSearchingHistory>(
       (event, emit) async {
         if (state is! SearchingHistoryLoaded) {
           emit(SearchingLoading());
@@ -29,7 +29,7 @@ class SearchingHistoryBloc
         }
       },
     );
-    on<ClearHistoryEvent>(
+    on<ClearSearchingHistory>(
       (event, emit) async {
         try {
           await history.clear();
@@ -40,7 +40,7 @@ class SearchingHistoryBloc
         }
       },
     );
-    on<LoadSearchingMangaListEvent>(
+    on<SearchManga>(
       (event, emit) async {
         if (state is! SearchingMangaListLoaded) {
           emit(SearchingLoading());

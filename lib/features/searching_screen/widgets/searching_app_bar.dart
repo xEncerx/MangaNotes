@@ -73,10 +73,10 @@ class _SearchingAppBarState extends State<SearchingAppBar> {
     widget.focusNode.unfocus();
     if (mounted) {
       BlocProvider.of<SearchingHistoryBloc>(context).add(
-        LoadSearchingHistoryEvent(),
+        LoadSearchingHistory(),
       );
       BlocProvider.of<SearchingHistoryBloc>(context).add(
-        LoadSearchingMangaListEvent(mangaName: mangaName),
+        SearchManga(mangaName: mangaName),
       );
     }
   }

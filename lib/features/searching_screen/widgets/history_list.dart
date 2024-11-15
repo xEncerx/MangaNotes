@@ -82,7 +82,7 @@ class HistoryCard extends StatelessWidget {
     controller.text = text;
     focusNode.unfocus();
     BlocProvider.of<SearchingHistoryBloc>(context).add(
-      LoadSearchingMangaListEvent(mangaName: text),
+      SearchManga(mangaName: text),
     );
   }
 }
@@ -124,7 +124,7 @@ class HistoryActions extends StatelessWidget {
 
   void _clearHistory(BuildContext context) {
     BlocProvider.of<SearchingHistoryBloc>(context).add(
-      ClearHistoryEvent(),
+      ClearSearchingHistory(),
     );
   }
 }

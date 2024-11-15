@@ -11,7 +11,7 @@ class MangaData extends Equatable {
 
   final String? mangaName;
   final String? otherNames;
-  final String? slug;
+  final String slug;
   final double? avgRating;
   final int? views;
   final int? chapters;
@@ -48,12 +48,9 @@ class MangaData extends Equatable {
   String get service => utf8.decode(base64.decode(uuid)).split("|")[0];
   String get mainName => mangaName ?? otherNames ?? "???";
 
-  factory MangaData.fromRemanga(Map<String, dynamic> json) =>
-      parseFromRemanga(json);
-  factory MangaData.fromShikimori(Map<String, dynamic> json) =>
-      parseFromShikimori(json);
-  factory MangaData.fromMangaOVH(Map<String, dynamic> json) =>
-      parseFromMangaOVH(json);
+  factory MangaData.fromRemanga(Map<String, dynamic> json) => parseFromRemanga(json);
+  factory MangaData.fromShikimori(Map<String, dynamic> json) => parseFromShikimori(json);
+  factory MangaData.fromMangaOVH(Map<String, dynamic> json) => parseFromMangaOVH(json);
   factory MangaData.fromDB(Map<String, dynamic> json) => parseFromDB(json);
 
   Map<String, dynamic> toJson() => {

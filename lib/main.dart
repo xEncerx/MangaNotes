@@ -77,7 +77,7 @@ Future<void> _setWindowSize() async {
   WindowOptions windowOptions = const WindowOptions(
     title: "MangaNotes",
     size: Size(460, 780),
-    minimumSize: Size(250, 300),
+    minimumSize: Size(360, 300),
   );
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();

@@ -15,13 +15,16 @@ class _SwipeableContentState extends State<SwipeableContent>
     vsync: this,
     duration: const Duration(milliseconds: 100),
   );
-  late Animation _animation;
+  final _tween = Tween<double>(begin: 0, end: 0);
   double _dx = 0;
+  late Animation _animation;
 
   @override
   void initState() {
-    _animation = Tween<double>(begin: 0, end: 0).animate(_controller)
-      ..addListener(() => setState(() => _dx = _animation.value));
+    _animation = _tween.animate(_controller)
+      ..addListener(
+        () => setState(() => _dx = _animation.value),
+      );
     super.initState();
   }
 
@@ -45,15 +48,15 @@ class _SwipeableContentState extends State<SwipeableContent>
 
   void _onPanUpdate(DragUpdateDetails details) {
     if (_dx + details.delta.dx >= 0) {
-      setState(() => _dx += details.delta.dx);
+      setState(() => _dx += details.delta.dx * 1.2);
     }
   }
 
   void _onPanEnd(DragEndDetails details) {
-    if (_dx > MediaQuery.of(context).size.width * 0.3) {
+    if (_dx > MediaQuery.of(context).size.width * 0.2) {
       context.router.maybePop();
     } else {
-      _animation = Tween<double>(begin: _dx, end: 0).animate(_controller);
+      _tween.begin = _dx;
       _controller.forward(from: 0);
     }
   }

@@ -20,7 +20,7 @@ class _SearchingScreenState extends State<SearchingScreen> {
   @override
   void initState() {
     BlocProvider.of<SearchingHistoryBloc>(context).add(
-      LoadSearchingHistoryEvent(),
+      LoadSearchingHistory(),
     );
     super.initState();
   }

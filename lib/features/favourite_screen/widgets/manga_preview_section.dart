@@ -61,9 +61,16 @@ class MangaSectionList extends StatelessWidget {
         ),
         child: BlocBuilder<MangaButtonCubit, MangaButtonState>(
           builder: (context, state) {
-            return state.isCardStyle
-                ? MangaCardList(mangaListData: mangaListData)
-                : MangaList(mangaListData: mangaListData);
+            return Column(
+              children: [
+                SectionInfoContainer(mangaListData: mangaListData),
+                Expanded(
+                  child: state.isCardStyle
+                      ? MangaCardList(mangaListData: mangaListData)
+                      : MangaList(mangaListData: mangaListData),
+                )
+              ],
+            );
           },
         ),
       );

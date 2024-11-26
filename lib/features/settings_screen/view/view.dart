@@ -23,11 +23,14 @@ class SettingsScreen extends StatelessWidget {
                 icon: Icons.arrow_back,
               ),
               Center(
-                child: Text(
-                  "Настройки",
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: theme.primaryColor,
+                child: Transform.translate(
+                  offset: const Offset(0, 5),
+                  child: Text(
+                    "Настройки",
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: theme.primaryColor,
+                    ),
                   ),
                 ),
               ),

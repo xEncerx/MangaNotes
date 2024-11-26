@@ -29,7 +29,7 @@ class SectionInfoContainer extends StatelessWidget {
             style: theme.textTheme.titleSmall?.copyWith(fontSize: 15),
           ),
           _FilledButton(
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.all(10),
             onTap: () => showSorterMethodBottomSheet(context),
             child: Row(
               children: [
@@ -47,7 +47,7 @@ class SectionInfoContainer extends StatelessWidget {
           ),
           _FilledButton(
             onTap: () => _openInfoScreen(context),
-            padding: const EdgeInsets.symmetric(vertical: 15),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             child: Icon(
               Icons.shuffle,
               color: theme.hintColor,
@@ -85,8 +85,9 @@ class _FilledButton extends StatelessWidget {
     return FilledButton(
       onPressed: () => onTap.call(),
       style: FilledButton.styleFrom(
+        visualDensity: VisualDensity.compact,
         elevation: 0,
-        backgroundColor: theme.canvasColor.withOpacity(0.4),
+        backgroundColor: theme.canvasColor,
         padding: padding,
         overlayColor: theme.hintColor,
       ),

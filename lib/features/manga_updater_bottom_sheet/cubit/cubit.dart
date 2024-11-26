@@ -44,7 +44,7 @@ class MangaUpdaterCubit extends Cubit<MangaUpdaterState> {
 
       completedSteps++;
       progress = completedSteps / totalSteps;
-      remainingTime = ((0.8 * (totalSteps - completedSteps)));
+      remainingTime = ((0.35 * (totalSteps - completedSteps)));
 
       emit(MangaUpdateLoading(remainingTime: remainingTime, progress: progress));
     }

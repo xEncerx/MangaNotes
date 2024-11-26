@@ -1,12 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:manga_notes/cubit/cubit.dart';
 import 'package:manga_notes/features/features.dart';
 import 'package:manga_notes/generated/assets.dart';
-import 'package:manga_notes/repositories/repositories.dart';
-import 'package:manga_notes/router/router.dart';
 import 'package:manga_notes/ui/const.dart';
 
 class SettingsBody extends StatelessWidget {
@@ -86,7 +82,7 @@ class SettingsBody extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   const Spacer(),
-                  const _LogOutButton(),
+                  const LogOutButton(),
                 ],
               ),
             ),
@@ -102,41 +98,5 @@ class SettingsBody extends StatelessWidget {
 
   void _changeTheme(BuildContext context, bool value) {
     BlocProvider.of<ThemeCubit>(context).setTheme(value ? "dark" : "light");
-  }
-}
-
-class _LogOutButton extends StatelessWidget {
-  const _LogOutButton();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: SizedBox(
-        width: double.infinity,
-        height: 50,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            backgroundColor: theme.hintColor.withOpacity(0.3),
-            overlayColor: theme.hintColor,
-          ),
-          onPressed: () => _logOut(context),
-          child: Text("Выйти из аккаунта", style: theme.textTheme.titleMedium),
-        ),
-      ),
-    );
-  }
-
-  Future<void> _logOut(BuildContext context) async {
-    await GetIt.I<DataBase>().logOut();
-    if (context.mounted) {
-      BlocProvider.of<MangaListBloc>(context).add(ResetMangaListEvent());
-      AutoRouter.of(context).replace(const AuthRoute());
-    }
   }
 }

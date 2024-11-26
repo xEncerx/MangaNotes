@@ -92,8 +92,6 @@ class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
     required String label,
     required SorterOrder sorterOrder,
   }) {
-    final theme = Theme.of(context);
-
     return Row(
       children: [
         Radio<SorterOrder>(
@@ -117,8 +115,6 @@ class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
     required String label,
     required SorterMethod sorterMethod,
   }) {
-    final theme = Theme.of(context);
-
     return Row(
       children: [
         Radio<SorterMethod>(

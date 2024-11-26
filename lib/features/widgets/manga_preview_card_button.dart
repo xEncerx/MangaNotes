@@ -13,14 +13,13 @@ class MangaPreviewCardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(10),
+    return GestureDetector(
       onTap: () => _openInfoScreen(context),
       child: Stack(
         children: [
           Card(
             color: theme.cardColor,
-            elevation: 4,
+            elevation: 1.5,
             child: Padding(
               padding: const EdgeInsets.all(5),
               child: Column(
@@ -38,6 +37,7 @@ class MangaPreviewCardButton extends StatelessWidget {
                     child: Center(
                       child: Text(
                         mangaData.mainName,
+                        textAlign: TextAlign.center,
                         style: theme.textTheme.labelSmall?.copyWith(
                           fontSize: 12,
                         ),
@@ -56,7 +56,7 @@ class MangaPreviewCardButton extends StatelessWidget {
           Positioned(
             top: 35,
             child: _InfoBadge(value: mangaData.chapters),
-          )
+          ),
         ],
       ),
     );

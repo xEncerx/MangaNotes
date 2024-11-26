@@ -142,7 +142,6 @@ class SectionRadioTile extends StatelessWidget {
             value: value,
             groupValue: groupValue,
             onChanged: onChanged,
-            activeColor: theme.primaryColor,
           ),
           const SizedBox(width: 10),
           Flexible(

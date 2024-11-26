@@ -5,6 +5,7 @@ final darkTheme = ThemeData(
   primaryColor: const Color(0xFFF4AA7E),
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xFFF4AA7E),
+    primary: const Color(0xFFF4AA7E),
     surface: const Color(0xFF121212),
     brightness: Brightness.dark,
   ),

@@ -18,8 +18,7 @@ class _MangaBottomSheetContent extends StatefulWidget {
   const _MangaBottomSheetContent();
 
   @override
-  State<_MangaBottomSheetContent> createState() =>
-      _MangaBottomSheetContentState();
+  State<_MangaBottomSheetContent> createState() => _MangaBottomSheetContentState();
 }
 
 class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
@@ -101,7 +100,6 @@ class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
           visualDensity: VisualDensity.compact,
           value: sorterOrder,
           groupValue: _sorterOrder,
-          activeColor: theme.primaryColor,
           onChanged: (SorterOrder? value) {
             if (value != null) {
               setState(() {
@@ -127,7 +125,6 @@ class _MangaBottomSheetContentState extends State<_MangaBottomSheetContent> {
           visualDensity: VisualDensity.compact,
           value: sorterMethod,
           groupValue: _sorterMethod,
-          activeColor: theme.primaryColor,
           onChanged: (SorterMethod? value) {
             if (value != null) {
               setState(() {

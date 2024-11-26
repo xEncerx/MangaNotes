@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
-class SearchingAppBarButton extends StatelessWidget
-    implements PreferredSizeWidget {
+class SearchingAppBarButton extends StatelessWidget implements PreferredSizeWidget {
   final TabBar? tabBar;
   final int barHeight;
 
@@ -65,11 +64,9 @@ class SearchingAppBarButton extends StatelessWidget
     );
   }
 
-  void _openSearchingScreen(BuildContext context) =>
-      AutoRouter.of(context).pushNamed("/search");
+  void _openSearchingScreen(BuildContext context) => AutoRouter.of(context).pushNamed("/search");
 
-  void _openSettingsScreen(BuildContext context) =>
-      AutoRouter.of(context).pushNamed("/settings");
+  void _openSettingsScreen(BuildContext context) => AutoRouter.of(context).pushNamed("/settings");
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight + barHeight);

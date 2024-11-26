@@ -29,6 +29,7 @@ void main() async {
       talker: talker,
       settings: const TalkerDioLoggerSettings(
         printResponseData: false,
+        printRequestData: false,
       ),
     ),
   );

@@ -160,8 +160,8 @@ class _MangaUpdaterContentState extends State<MangaUpdaterContent> {
   String _calculateEndTime(List<MangaData>? mangaListData) {
     if (mangaListData == null) return "~ 0 сек.";
 
-    double endTime = _getSelectedMangaList(mangaListData).length * 0.8;
-    return "~ ${endTime.toStringAsFixed(1)} сек.";
+    double endTime = _getSelectedMangaList(mangaListData).length * 0.35;
+    return "~ ${endTime.toStringAsFixed(1)} сек. | ${mangaListData.length} шт.";
   }
 
   List<MangaData> _getSelectedMangaList(List<MangaData>? mangaListData) {

@@ -18,11 +18,18 @@ class _MangaUpdaterContentState extends State<MangaUpdaterContent> {
   bool _isReadingSection = true;
   bool _isPlannedSection = true;
   late Future<List<MangaData>?> mangaListData;
+  final _bloc = MangaUpdaterCubit();
 
   @override
   void initState() {
     mangaListData = GetIt.I<DataBase>().selectAllManga();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _bloc.close();
+    super.dispose();
   }
 
   @override
@@ -56,6 +63,7 @@ class _MangaUpdaterContentState extends State<MangaUpdaterContent> {
           ),
           const SizedBox(height: 5),
           BlocBuilder<MangaUpdaterCubit, MangaUpdaterState>(
+            bloc: _bloc,
             builder: (context, state) {
               if (state is MangaUpdateLoading) {
                 return _buildLoadingBar(state.progress, state.remainingTime);
@@ -115,9 +123,9 @@ class _MangaUpdaterContentState extends State<MangaUpdaterContent> {
             backgroundColor: theme.primaryColor.withOpacity(0.9),
           ),
           onPressed: () {
-            var mangaData = _getSelectedMangaList(mangaListData);
+            final mangaData = _getSelectedMangaList(mangaListData);
             if (mangaData.isEmpty) return;
-            context.read<MangaUpdaterCubit>().startUpdating(mangaData);
+            _bloc.startUpdating(mangaData);
           },
           child: Text("Обновить", style: theme.textTheme.titleMedium),
         ),
@@ -145,23 +153,21 @@ class _MangaUpdaterContentState extends State<MangaUpdaterContent> {
   }
 
   Widget _buildLoadingBar(double progress, double remainingTime) {
-    return BlocBuilder<MangaUpdaterCubit, MangaUpdaterState>(
-      builder: (context, state) {
-        return Column(
-          children: [
-            LinearProgressIndicator(value: progress),
-            Text("Оставшееся время: ${remainingTime.toStringAsFixed(2)} сек."),
-          ],
-        );
-      },
+    return Column(
+      children: [
+        LinearProgressIndicator(value: progress),
+        Text("Оставшееся время: ${remainingTime.toStringAsFixed(2)} сек."),
+      ],
     );
   }
 
   String _calculateEndTime(List<MangaData>? mangaListData) {
     if (mangaListData == null) return "~ 0 сек.";
 
-    double endTime = _getSelectedMangaList(mangaListData).length * 0.35;
-    return "~ ${endTime.toStringAsFixed(1)} сек. | ${mangaListData.length} шт.";
+    final selectedManga = _getSelectedMangaList(mangaListData);
+
+    final endTime = selectedManga.length * 0.35;
+    return "~ ${endTime.toStringAsFixed(1)} сек. | ${selectedManga.length} шт.";
   }
 
   List<MangaData> _getSelectedMangaList(List<MangaData>? mangaListData) {
